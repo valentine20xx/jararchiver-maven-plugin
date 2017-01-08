@@ -1,0 +1,39 @@
+<component-set>
+    <components>
+        <component>
+            <role>org.apache.maven.lifecycle.mapping.LifecycleMapping</role>
+            <role-hint>jar-archiver</role-hint>
+            <implementation>org.apache.maven.lifecycle.mapping.DefaultLifecycleMapping</implementation>
+            <configuration>
+                <lifecycles>
+                    <lifecycle>
+                        <id>default</id>
+                        <phases>
+                            <process-resources>org.apache.maven.plugins:maven-resources-plugin:3.0.2:resources</process-resources>
+                            <compile>org.apache.maven.plugins:maven-compiler-plugin:3.6.0:compile</compile>
+                            <process-test-resources>org.apache.maven.plugins:maven-resources-plugin:3.0.2:testResources</process-test-resources>
+                            <test-compile>org.apache.maven.plugins:maven-compiler-plugin:3.6.0:testCompile</test-compile>
+                            <test>org.apache.maven.plugins:maven-surefire-plugin:2.19.1:test</test>
+                            <package>org.apache.maven.plugins:jararchiver-maven-plugin:createJar</package>
+                            <install>org.apache.maven.plugins:maven-install-plugin:2.5.2:install</install>
+                            <deploy>org.apache.maven.plugins:maven-deploy-plugin:2.8.2:deploy</deploy>
+                        </phases>
+                    </lifecycle>
+                </lifecycles>
+            </configuration>
+        </component>
+        <component>
+            <role>org.apache.maven.artifact.handler.ArtifactHandler</role>
+            <role-hint>jar-archiver</role-hint>
+            <implementation>org.apache.maven.artifact.handler.DefaultArtifactHandler</implementation>
+            <configuration>
+                <!--the extension used by Maven in the repository-->
+                <extension>jar-archiver</extension>
+                <!--the type used when specifying dependencies etc.-->
+                <type>jar-archiver</type>
+                <!--the packaging used when declaring an implementation of the packaging-->
+                <packaging>jar-archiver</packaging>
+            </configuration>
+        </component>
+    </components>
+</component-set>
